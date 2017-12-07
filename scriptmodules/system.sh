@@ -234,6 +234,8 @@ function get_platform() {
                 ;;
             *)
                 case $architecture in
+                    aarch64)
+                        __platform="pi64"
                     i686|x86_64|amd64)
                         __platform="x86"
                         ;;
@@ -276,6 +278,15 @@ function platform_rpi3() {
     __default_asflags=""
     __default_makeflags="-j2"
     __platform_flags="arm armv8 neon rpi gles"
+}
+
+# note the rpi3 currently uses the rpi2 binaries - for ease of maintenance - rebuilding from source
+# could improve performance with the compiler options below but needs further testing
+function platform_rpi64() {
+    __default_cflags="-O2 -march=native -ftree-vectorize -funsafe-math-optimizations"
+    __default_asflags=""
+    __default_makeflags="-j2"
+    __platform_flags="aarch64 neon rpi gles"
 }
 
 function platform_odroid-c1() {

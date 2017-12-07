@@ -231,9 +231,6 @@ function get_platform() {
                 ;;
             *)
                 case $architecture in
-                    aarch64)
-                        __platform="pi64"
-                        ;;
                     i686|x86_64|amd64)
                         __platform="x86"
                         ;;
